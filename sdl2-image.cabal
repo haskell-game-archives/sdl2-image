@@ -1,5 +1,6 @@
+cabal-version: 2.4
 name:          sdl2-image
-version:       2.0.0
+version:       2.0.1
 synopsis:      Bindings to SDL2_image.
 description:   Haskell bindings to SDL2_image.
 license:       MIT
@@ -9,38 +10,37 @@ maintainer:    Siniša Biđin <sinisa@bidin.eu>
 copyright:     Copyright © 2014 Cai Lei, Copyright © 2015 Siniša Biđin
 category:      Image, Graphics, Foreign
 build-type:    Simple
-cabal-version: >=1.10
+tested-with:   GHC ==8.6.5 || ==8.8.4 || ==8.10.5 || ==9.0.1
 
 source-repository head
   type:     git
-  location: https://github.com/sbidin/sdl2-image.git
+  location: https://github.com/haskell-game-archives/sdl2-image.git
+
+common common
+  build-depends:
+    , base  >=4.12 && <4.16
+    , sdl2  ^>=2.5
+    , text  ^>=1.2
+
+  ghc-options:      -Wall
+  default-language: Haskell2010
 
 library
-  ghc-options: -Wall
+  import:            common
+  hs-source-dirs:    src
+  build-depends:
+    , bytestring        >=0.10 && <0.12
+    , template-haskell  >=2.14 && <2.18
+    , th-abstraction    ^>=0.4
 
+  pkgconfig-depends: sdl2 ==2.0.3 || >2.0.3, SDL2_image ==2.0.0 || >2.0.0
+
+  -- cabal-fmt: expand src -SDL.Raw.Helper
   exposed-modules:
-    SDL.Image,
+    SDL.Image
     SDL.Raw.Image
 
-  other-modules:
-    SDL.Raw.Helper
-
-  hs-source-dirs:
-    src
-
-  pkgconfig-depends:
-    sdl2 >= 2.0.3,
-    SDL2_image >= 2.0.0
-
-  build-depends:
-    base             >= 4.7 && < 5,
-    bytestring       >= 0.10.4.0,
-    sdl2             >= 2.0,
-    text             >= 1.1.0.0,
-    template-haskell
-
-  default-language:
-    Haskell2010
+  other-modules:     SDL.Raw.Helper
 
   if os(windows)
     cpp-options: -D_SDL_main_h -DSDL_main_h_ -DSDL_MAIN_HANDLED
@@ -50,16 +50,11 @@ flag example
   default:     False
 
 executable sdl2-image-example
-  ghc-options: -Wall
-  hs-source-dirs: example
-  main-is: Example.hs
-  default-language: Haskell2010
+  import:  common
+  main-is: example/Example.hs
 
   if flag(example)
-    build-depends:
-      base       >= 4.7 && < 5,
-      sdl2       >= 2.0,
-      sdl2-image,
-      text       >= 1.1.0.0
+    build-depends: sdl2-image
+
   else
     buildable: False
