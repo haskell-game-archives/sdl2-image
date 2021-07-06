@@ -1,7 +1,9 @@
 # sdl2-image
 
-[![Hackage](https://img.shields.io/hackage/v/sdl2-image.svg)](https://hackage.haskell.org/package/sdl2-image)
-[![Build Status](https://travis-ci.org/sbidin/sdl2-image.svg?branch=master)](https://travis-ci.org/sbidin/sdl2-image)
+[![cabal](https://github.com/haskell-game-archives/sdl2-image/actions/workflows/cabal.yml/badge.svg)](https://github.com/haskell-game-archives/sdl2-image/actions/workflows/cabal.yml)
+[![format](https://github.com/haskell-game-archives/sdl2-image/actions/workflows/format.yml/badge.svg)](https://github.com/haskell-game-archives/sdl2-image/actions/workflows/format.yml)
+[![lint](https://github.com/haskell-game-archives/sdl2-image/actions/workflows/lint.yml/badge.svg)](https://github.com/haskell-game-archives/sdl2-image/actions/workflows/lint.yml)
+[![dependencies check](https://github.com/haskell-game-archives/sdl2-image/actions/workflows/outdated.yml/badge.svg)](https://github.com/haskell-game-archives/sdl2-image/actions/workflows/outdated.yml)
 
 #### Haskell bindings to SDL2_image
 
